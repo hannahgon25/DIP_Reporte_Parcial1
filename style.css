@@ -20,6 +20,7 @@ nav ul {
   list-style: none;
   text-align: center;
   margin: 0;
+  
 }
 
 nav ul li {
@@ -44,4 +45,24 @@ footer {
   text-align: center;
   padding: 10px;
   margin-top: 20px;
+}
+p {
+  text-indent: 2em;   /* sangría */
+  text-align: justify; /* texto justificado */
+  line-height: 1.6;   /* interlineado agradable */
+}
+pre {
+  background-color: #f4f4f4;
+  border: 2px solid #4CAF50;  /* borde verde bonito */
+  border-radius: 10px;        /* esquinas redondeadas */
+  padding: 15px;
+  width: 80%;                 /* no ocupe todo el ancho */
+  margin: 20px auto;          /* centrado horizontal */
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+  font-size: 15px;
+  overflow-x: auto;           /* scroll si el código es largo */
+}
+code {
+  font-family: "Courier New", monospace;
+  color: #333;
 }
