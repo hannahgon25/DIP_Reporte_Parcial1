@@ -66,3 +66,11 @@ code {
   font-family: "Courier New", monospace;
   color: #333;
 }
+body {
+  margin: 0;                 /* quitamos márgenes raros del navegador */
+  padding: 30px 60px;        /* sangría general: 30px arriba/abajo, 60px izquierda/derecha */
+  background-color: #f8fffa; /* color suave de fondo */
+  font-family: "Georgia", serif; /* fuente más elegante */
+  line-height: 1.6;
+}
+
