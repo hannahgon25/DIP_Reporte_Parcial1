@@ -2,16 +2,25 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Reporte Primer Parcial - Procesamiento Digital de Imágenes</title>
+  <title>Reporte Primer Parcial - Procesamiento de Imágenes</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <h1>📋 Reporte Primer Parcial</h1>
-    <h2>Procesamiento Digital de Imágenes</h2>
-    <p>Equipo: Future Minds</p>
-  </header>
-
+    <h2>Procesamiento de Imágenes</h2>
+    <p>Equipo: Panteras Verdes xD</p>
+    
+  <!-- Apartado desplegable -->
+  <details>
+    <summary><b>Integrantes</b></summary>
+    <ul>
+      <li>González García Hannah Andrea -ID:0276927</li>
+      <li>Reza Zatarain Jesús Miguel </li>
+      <li>Gutiérrez Castellanos Carol Kristel</li>
+    </ul>
+  </details>
+</header>
   <nav>
     <ul>
       <li><a href="#intro">1. Introducción</a></li>
@@ -26,6 +35,72 @@
     <!-- INTRODUCCIÓN -->
     <section id="intro">
       <h2>1. Introducción</h2>
+
+<h3>1.0.1 Herramientas y fundamentos en Python</h3>
+<p>
+En las primeras semanas del curso nos involucramos y trabajamos en <b>Jupyter Notebooks</b>, un entorno que permite
+combinar código, texto y visualizaciones, ideal para documentar experimentos en procesamiento digital de imágenes.
+Asi mismo revisamos las <b>instrucciones básicas de Python</b> (uso de <code>print()</code>, declaración de variables,
+tipos de datos primitivos como <i>int, float, str, bool</i>) y estructuras como listas y tuplas.
+También se abordó la <b>conversión de tipos</b> (casting), fundamental para transformar datos numéricos
+que más adelante representarán valores de píxeles en imágenes.
+</p>
+
+<h3>Listas, Indexing y Slicing</h3>
+<p>
+Repaso de <b>listas</b>, una de las estructuras más versátiles de Python.
+  <li>Declaración: <code>lista = [1,2,3,4,5,6,7]</code></li>
+  <li>Contar elementos de una lista: <code>len(lista)</code></li>
+<i>Indexación positiva</i>: Sirve para acceder a elementos invideduales. 
+<i>Indexación negativa</i>: para acceder a elementos de una secuencia (como listas, tuplas o cadenas) desde el final, en vez del principio.
+<i>slicing</i>: para extraer subconjuntos. Estas operaciones son clave porque en imágenes, los datos suelen organizarse en colecciones y matrices.
+<i>Ejemplo: <code>lista[0:3]</code>devuelve los primeros tres elementos).</i></p> 
+
+<pre><code class="language-python">
+# Lista de ejemplo
+numeros = [10, 20, 30, 40, 50]
+
+print(numeros[0])    # Primer elemento → 10
+print(numeros[-1])   # Último elemento → 50
+print(numeros[1:4])  # Slicing: [20, 30, 40]
+</code></pre>
+
+<p>
+Además, se reforzó el uso de bucles <code>for</code> para recorrer listas, cadenas o secuencias generadas con <code>range()</code>.
+Estas estructuras de control son la base para recorrer arreglos de píxeles y aplicar transformaciones sistemáticas.
+</p>
+
+<h3> Introducción a NumPy</h3>
+<p>
+El paso más importante fue la introducción a <b>NumPy</b>, la librería científica que permite trabajar con
+arreglos multidimensionales. A diferencia de las listas nativas, los arreglos NumPy son más rápidos,
+consumen menos memoria y permiten operaciones vectorizadas, lo cual es esencial al manejar imágenes.
+</p>
+
+<pre><code class="language-python">
+import numpy as np
+
+# Crear un arreglo NumPy
+matriz = np.array([[1, 2, 3],
+                   [4, 5, 6],
+                   [7, 8, 9]])
+
+print(matriz.shape)  # (3, 3) → 3 filas, 3 columnas
+print(matriz.dtype)  # int64 → tipo de datos
+print(matriz[1, 2])  # Acceder a la fila 2, columna 3 → 6
+</code></pre>
+<p>
+En resumen: 
+  •	shape → devuelve la dimensión del arreglo (ej. filas y columnas en una matriz).
+	•	dtype → indica el tipo de dato que contienen los elementos (muy útil para imágenes en escala de grises o color).
+	•	size → número total de elementos en el arreglo..
+</p>
+<p>
+Con NumPy se establecen las bases para representar imágenes como <b>matrices multidimensionales</b>,
+donde cada elemento corresponde a un píxel. Este conocimiento será esencial en los siguientes módulos,
+al aplicar filtros, transformaciones y análisis sobre datos visuales.
+</p>
+
 
       <h3>1.1. Definición de visión humana</h3>
       <h4>1.1.1. Estructura del ojo humano</h4>
