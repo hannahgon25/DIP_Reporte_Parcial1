@@ -66,5 +66,13 @@ code {
   font-family: "Courier New", monospace;
   color: #333;
 }
+main {
+  max-width: 1000px;   /* ancho máximo */
+  margin: 0 auto;      /* centrado horizontal */
+  padding: 30px;       /* espacio interno */
+  background: #ffffff; /* fondo blanco */
+  border-radius: 12px; /* esquinas suaves */
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* sombra ligera */
+}
 
 
