@@ -1,11 +1,12 @@
+/* === ESTILOS GENERALES === */
 body {
-  margin: 0;                 /* quitamos márgenes raros del navegador */
-  padding: 30px 60px;        /* sangría general: 30px arriba/abajo, 60px izquierda/derecha */
+  margin: 0;
   background-color: #f8fffa; /* color suave de fondo */
-  font-family: "Georgia", serif; /* fuente más elegante */
+  font-family: "Georgia", serif;
   line-height: 1.6;
 }
 
+/* === ENCABEZADO === */
 header {
   background: #a8e6cf;
   color: #033d1c;
@@ -14,13 +15,13 @@ header {
   border-bottom: 4px solid #77dd77;
 }
 
+/* === MENÚ DE NAVEGACIÓN === */
 nav ul {
   background: #d0f0c0;
   padding: 10px;
   list-style: none;
   text-align: center;
   margin: 0;
-  
 }
 
 nav ul li {
@@ -34,45 +35,52 @@ nav ul li a {
   font-weight: bold;
 }
 
+/* === TÍTULOS === */
 h2 {
   color: #2e7d32;
   border-bottom: 2px solid #77dd77;
   padding-bottom: 5px;
 }
 
+/* === PIE DE PÁGINA === */
 footer {
   background: #a8e6cf;
   text-align: center;
   padding: 10px;
   margin-top: 20px;
 }
+
+/* === PÁRRAFOS === */
 p {
-  text-indent: 2em;   /* sangría */
-  text-align: justify; /* texto justificado */
-  line-height: 1.6;   /* interlineado agradable */
+  text-indent: 2em;   /* sangría en primera línea */
+  text-align: justify; /* justificado */
+  line-height: 1.6;   /* interlineado */
 }
+
+/* === BLOQUES DE CÓDIGO === */
 pre {
   background-color: #f4f4f4;
   border: 2px solid #4CAF50;  /* borde verde bonito */
   border-radius: 10px;        /* esquinas redondeadas */
   padding: 15px;
-  width: 80%;                 /* no ocupe todo el ancho */
-  margin: 20px auto;          /* centrado horizontal */
+  width: 80%;                 /* ancho moderado */
+  margin: 20px auto;          /* centrado */
   box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
   font-size: 15px;
-  overflow-x: auto;           /* scroll si el código es largo */
+  overflow-x: auto;           /* scroll si es muy largo */
 }
+
 code {
   font-family: "Courier New", monospace;
   color: #333;
 }
+
+/* === CONTENIDO PRINCIPAL === */
 main {
-  max-width: 1000px;   /* ancho máximo */
-  margin: 0 auto;      /* centrado horizontal */
-  padding: 30px;       /* espacio interno */
-  background: #ffffff; /* fondo blanco */
-  border-radius: 12px; /* esquinas suaves */
+  max-width: 1000px;   /* ancho máximo de la hoja */
+  margin: 40px auto;   /* centrado con espacio arriba/abajo */
+  padding: 40px 60px;  /* sangría interna */
+  background: #ffffff; /* fondo tipo hoja */
+  border-radius: 12px; /* bordes suaves */
   box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* sombra ligera */
 }
-
-
