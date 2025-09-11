@@ -234,7 +234,7 @@ En esta etapa, los algoritmos buscan comprender "qué" hay en la imagen y darle 
     definidos mediante una ventana. Estos vecinos se clasifican en:
   </p>
 
-  <h3>1. 4-vecinos</h3>
+  <h3>4-vecinos</h3>
   <p>
     Son los píxeles ubicados arriba, abajo, izquierda y derecha del píxel central:
   </p>
@@ -245,7 +245,7 @@ En esta etapa, los algoritmos buscan comprender "qué" hay en la imagen y darle 
     <li>(x, y + 1)</li>
   </ul>
 
-  <h3>2. 8-vecinos</h3>
+  <h3> 8-vecinos</h3>
   <p>
     Incluyen los 4-vecinos y además los píxeles en las diagonales:
   </p>
@@ -316,14 +316,222 @@ En esta etapa, los algoritmos buscan comprender "qué" hay en la imagen y darle 
       <h4>3.2.1. Funciones Básicas</h4>
       <ul>
         <li>3.2.1.1. Negativos</li>
+		  <p>
+    Las transformaciones de intensidad modifican el valor de cada píxel de forma 
+    independiente para mejorar la apariencia de una imagen. 
+    Una de estas es la <strong>transformación negativa</strong>.
+  </p>
+
+  <h3>Transformación Negativa</h3>
+  <p>
+    Esta transformación invierte los niveles de brillo de la imagen original: 
+    los píxeles claros se vuelven oscuros y los píxeles oscuros se vuelven claros.
+  </p>
+
+  <p><strong>Fórmula matemática:</strong></p>
+  <pre>
+    s = L - 1 - r
+  </pre>
+
+  <p>
+    Donde:
+  </p>
+  <ul>
+    <li><strong>s</strong>: nuevo valor del píxel.</li>
+    <li><strong>r</strong>: valor original del píxel.</li>
+    <li><strong>L</strong>: número total de niveles de intensidad.</li>
+  </ul>
+
+  <h3>Ejemplo</h3>
+  <p>
+    En una imagen de 8 bits con 256 niveles de gris, 
+    un píxel con un valor de <strong>10</strong> (casi negro) 
+    se transforma en un píxel con un valor de <strong>245</strong> (casi blanco).
+  </p>
+
+  <p>
+    La transformación negativa es útil para realzar detalles ocultos 
+    en áreas muy oscuras de una imagen, haciéndolos más visibles al convertirlos en tonos más claros.
+  </p>
+
+  <h3>Ej</h3>
+  
+
+# Lee la imagen en escala de grises
+img = cv.imread('imagen_oscura.jpg', 0)
+
+# Aplica la transformación negativa
+img_negativa = 255 - img
+  </code></pre>
+
+		  
         <li>3.2.1.2. Transformaciones logarítmicas</li>
+		  <p>
+    Las transformaciones de intensidad son técnicas clave en el 
+    <strong>procesamiento de imágenes</strong> para mejorar su apariencia. 
+    Una de ellas, la <strong>transformación logarítmica</strong>, es especialmente útil 
+    para expandir el rango de valores de píxeles oscuros mientras comprime 
+    el de los píxeles más claros.
+  </p>
+
+  <p>
+    Este tipo de transformación es ideal para realzar detalles en las partes oscuras 
+    de una imagen, como las sombras, haciendo que los tonos que son difíciles 
+    de distinguir sean más visibles para el ojo humano.
+  </p>
+
+  <h3>Fórmula matemática</h3>
+  <pre>
+    s = c · log(1 + r)
+  </pre>
+
+  <p>
+    Donde:
+  </p>
+  <ul>
+    <li><strong>s</strong>: nuevo valor del píxel.</li>
+    <li><strong>r</strong>: valor original del píxel.</li>
+    <li><strong>c</strong>: constante que ajusta la curva logarítmica para 
+        escalar la salida a un rango adecuado.</li>
+  </ul>
+
+  <p>
+    Un ejemplo claro de aplicación se observa en imágenes con 
+    <strong>alto rango dinámico</strong>, donde una gran variedad de valores 
+    de intensidad se comprime en un rango más manejable sin perder 
+    detalles en las áreas oscuras.
+  </p>
+
+  <h3>Ej</h3>
+ 
+
+# Lee la imagen en escala de grises
+img = cv.imread('imagen_oscura.jpg', 0)
+
+# Calcula el factor de escala
+c = 255 / np.log(1 + np.max(img))
+
+# Aplica la transformación logarítmica
+img_log = c * np.log1p(np.float32(img))
+  </code></pre>
+		  
         <li>3.2.1.3. Transformaciones Gamma</li>
       </ul>
+		 <p>
+    La <strong>transformación de potencia</strong> (o <strong>Gamma</strong>) 
+    es un tipo de transformación de intensidad ideal para 
+    <em>ajustar el contraste y la luminosidad</em> de una imagen, 
+    especialmente cuando se ve demasiado oscura o demasiado clara.
+  </p>
+
+  <h3>Efecto según el valor de Gamma</h3>
+  <ul>
+    <li>
+      <strong>Gamma &gt; 1:</strong>  
+      La curva de transformación es <em>cóncava</em>.  
+      Comprime los valores de píxeles claros, haciendo la imagen más oscura.  
+      Es útil para corregir imágenes <strong>sobreexpuestas</strong> o muy claras.
+    </li>
+    <li>
+      <strong>Gamma &lt; 1:</strong>  
+      La curva de transformación es <em>convexa</em>.  
+      Expande los valores de píxeles oscuros, haciendo la imagen más clara.  
+      Es ideal para realzar detalles en las áreas oscuras de una imagen.
+    </li>
+  </ul>
+
+  <h3>Ej</h3>
+  
+
+# Lee la imagen en escala de grises
+img = cv.imread('imagen_oscura.jpg', 0)
+
+# Convierte la imagen a tipo flotante para la operación
+img_float = np.float32(img)
+
+# Normaliza los valores de píxeles a un rango de [0, 1]
+img_norm = img_float / 255.0
+
+# Aplica la transformación Gamma
+# Aquí, un gamma de 0.5 hará la imagen más clara
+gamma = 0.5
+img_gamma = np.power(img_norm, gamma)
+
+# Convierte de nuevo los valores a un rango de [0, 255] y a tipo uint8
+img_gamma = np.uint8(img_gamma * 255)
+  </code></pre>
 
       <h4>3.2.2. Procesamiento de Histogramas</h4>
       <ul>
         <li>3.2.2.1. Ecualización</li>
-        <li>3.2.2.2. Ecualización local</li>
+		    <p>
+    El <strong>histograma</strong> de una imagen es una representación gráfica 
+    que muestra la frecuencia de aparición de cada nivel de intensidad 
+    ya sea brillo o gris en la imagen.
+  </p>
+
+  <p>
+    El <strong>procesamiento de histogramas</strong> busca modificar esta distribución 
+    para mejorar la calidad visual de la imagen o resaltar detalles.
+  </p>
+
+  <h3>Ecualización de Histograma</h3>
+  <p>
+    La <strong>ecualización de histograma</strong> es una técnica usada para 
+    <em>mejorar el contraste</em> de una imagen.  
+    Funciona redistribuyendo los niveles de intensidad de manera que 
+    el histograma resultante se aproxime a una distribución uniforme.
+  </p>
+
+  <p>
+    Esto hace que las zonas oscuras se aclaren y las zonas claras se 
+    oscurezcan un poco, realzando detalles que eran difíciles de distinguir.
+  </p>
+
+  <h3>Ej</h3>
+
+# Lee la imagen en escala de grises
+img = cv.imread('imagen_oscura.jpg', 0)
+
+# Aplica la ecualización de histograma
+img_eq = cv.equalizeHist(img)
+
+  </code></pre>
+
+  <h3>Resultado</h3>
+  <ul>
+    <li><strong>Imagen original:</strong> contraste bajo, detalles ocultos.</li>
+    <li><strong>Imagen ecualizada:</strong> contraste mejorado, detalles visibles.</li>
+  </ul>
+        <li>3.2.2.2. Ecualización </li>
+		  <p>
+    Primero, se calcula el histograma de la imagen, que muestra la frecuencia de cada nivel de intensidad. 
+    Las imágenes con <strong>bajo contraste</strong> suelen tener la mayoría de sus píxeles concentrados 
+    en un rango de intensidad limitado.
+  </p>
+
+  <h3>2. Mapeo de Intensidades</h3>
+  <p>
+    La ecualización remapea los valores de intensidad originales a nuevos valores, de forma que la distribución 
+    de píxeles resultante sea lo más uniforme posible en todo el rango (por ejemplo, de 0 a 255).
+  </p>
+
+  <p>
+    El resultado es una imagen con <strong>contraste mejorado</strong>, donde los detalles que antes 
+    estaban ocultos en áreas muy oscuras o claras se vuelven más visibles.
+  </p>
+
+  <h3>Eje</h3>
+
+
+# Lee la imagen en escala de grises
+img = cv.imread('imagen_oscura.jpg', 0)
+
+# Aplica la ecualización del histograma utilizando la función de OpenCV
+img_ecualizada = cv.equalizeHist(img)
+
+
+  </code></pre>
       </ul>
     </section>
 
