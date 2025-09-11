@@ -229,25 +229,87 @@ En esta etapa, los algoritmos buscan comprender "qué" hay en la imagen y darle 
 
       <h3>3.1. Operaciones entre píxeles</h3>
       <h4>3.1.1. Vecinos de un píxel</h4>
-      <p>En el procesamiento de imágenes, los vecinos de un píxel se refieren a los píxeles que rodean a uno central
-	     en una posición (x,y), definidos mediante una ventana. Estos vecinos se clasifican en:
+      <p>En el <strong>procesamiento de imágenes</strong>, los vecinos de un píxel se refieren 
+    a los píxeles que rodean a uno central en una posición <em>(x, y)</em>, 
+    definidos mediante una ventana. Estos vecinos se clasifican en:
+  </p>
 
-	    4- vecinos: arriba, abajo, izquierda y derecha
-		  (x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1) 
+  <h3>1. 4-vecinos</h3>
+  <p>
+    Son los píxeles ubicados arriba, abajo, izquierda y derecha del píxel central:
+  </p>
+  <ul>
+    <li>(x - 1, y)</li>
+    <li>(x + 1, y)</li>
+    <li>(x, y - 1)</li>
+    <li>(x, y + 1)</li>
+  </ul>
 
-	   8- vecinos, incluye los 4- vecinos y las diagonales 
-		  (x - 1, y - 1), (x - 1, y + 1), (x + 1, y - 1), (x + 1, y + 1)
+  <h3>2. 8-vecinos</h3>
+  <p>
+    Incluyen los 4-vecinos y además los píxeles en las diagonales:
+  </p>
+  <ul>
+    <li>(x - 1, y - 1)</li>
+    <li>(x - 1, y + 1)</li>
+    <li>(x + 1, y - 1)</li>
+    <li>(x + 1, y + 1)</li>
+  </ul>
 
-		Estas vecindades son esenciales para operaciones como filtrado, detección de bordes o morfología matemática,
-		donde el valor de cada píxel se modifica en función de sus vecinos.
+  <p>
+    Estas vecindades son esenciales para operaciones como 
+    <em>filtrado</em>, <em>detección de bordes</em> o 
+    <em>morfología matemática</em>, donde el valor de cada píxel 
+    se modifica en función de sus vecinos.
 	  
 	  
 	  </p>
 
       <h4>3.1.2. Adyacencia y conectividad</h4>
-      <p>Dos pixeles pueden considerarse "vecinos" entre si basado en:
-	     Su cercania espacial(las posiciones)
-	     Similutud entre sus valores(intensidad o color)</p>
+      <p>Dos píxeles pueden considerarse <strong>"vecinos"</strong> entre sí basados en:
+  </p>
+  <ul>
+    <li>Su cercanía espacial (las posiciones).</li>
+    <li>La similitud entre sus valores (intensidad o color).</li>
+  </ul>
+
+  <h3>Tipos más comunes de Adyacencia</h3>
+
+  <h4>Adyacencia 4</h4>
+  <p>
+    Dos píxeles son adyacentes si comparten un lado vertical u horizontal.
+  </p>
+  <p><em>Ejemplo:</em> el píxel (x, y) es adyacente a (x + 1, y) o (x, y + 1).</p>
+
+  <h4>Adyacencia 8</h4>
+  <p>
+    Incluye lados y esquinas diagonales.
+  </p>
+  <p><em>Ejemplo:</em> el píxel (x, y) es adyacente a (x + 1, y + 1).</p>
+
+  <h4>Adyacencia Mixta</h4>
+  <p>
+    Es un tipo de adyacencia usado en imágenes binarias, donde se combinan
+    reglas de adyacencia 4 y 8 dependiendo de la aplicación.
+  </p>
+
+  <h3>Conectividad</h3>
+  <p>
+    La conectividad se refiere a cómo se relacionan los píxeles en una imagen. 
+    Dos píxeles se consideran conectados si existe un camino entre ellos a través 
+    de otros píxeles adyacentes, siempre que esos píxeles tengan valores similares.
+  </p>
+  <p>
+    Esto significa que, si tienes una serie de píxeles del mismo color o muy parecidos, 
+    puedes conectar esos píxeles entre sí. La conectividad ayuda a definir regiones 
+    o caminos en la imagen basándose en la proximidad y la similitud de los colores.
+  </p>
+
+  <h4>Tipos de Conectividad</h4>
+  <ul>
+    <li><strong>Conectividad 4:</strong> la ruta solo puede usar movimientos horizontales o verticales.</li>
+    <li><strong>Conectividad 8:</strong> permite movimientos diagonales además de horizontales y verticales.</li>
+  </ul>
 
       <h3>3.2. Transformaciones de Intensidad y Filtrado Espacial</h3>
 
